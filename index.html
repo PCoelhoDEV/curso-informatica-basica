@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Curso Prático de Informática Básica — Do Zero ao Certificado</title>
-  <meta name="description" content="Aprenda informática básica do zero no Windows 10, domine o computador e receba seu Certificado de 40h válido em todo o Brasil por apenas R$ 24,90.">
+  <title>Curso Prático de Informática Básica — Do Zero ao Certificado em 7 Dias</title>
+  <meta name="description" content="Aprenda informática prática do zero no Windows 10, conquiste autonomia digital e garanta seu Certificado Profissional de 40h reconhecido em todo o Brasil.">
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
 
-  <!-- Google Fonts: Inter -->
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,19 +25,18 @@
             heading: ['"Plus Jakarta Sans"', 'sans-serif']
           },
           colors: {
-            navy: {
-              900: '#0B1120',
-              800: '#0F172A',
-              700: '#1E293B',
-              600: '#334155'
-            },
-            primary: {
+            brand: {
+              50: '#F0F7FF',
+              100: '#E0EFFE',
               500: '#2563EB',
-              600: '#1D4ED8'
+              600: '#1D4ED8',
+              700: '#1E40AF',
+              900: '#0F172A'
             },
             emerald: {
               500: '#10B981',
-              600: '#059669'
+              600: '#059669',
+              700: '#047857'
             }
           }
         }
@@ -51,124 +50,152 @@
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #0B1120;
-      color: #E2E8F0;
+      background-color: #FFFFFF;
+      color: #1E293B;
       -webkit-font-smoothing: antialiased;
     }
     h1, h2, h3, h4, .font-heading {
       font-family: '"Plus Jakarta Sans"', sans-serif;
     }
-    .custom-shadow {
-      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+    .card-clean {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05), 0 2px 6px -2px rgba(0, 0, 0, 0.02);
+    }
+    .card-clean-glow {
+      background: #FFFFFF;
+      border: 2px solid #2563EB;
+      box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.15);
     }
   </style>
 
-  <!-- CONFIGURAÇÃO DE CHECKOUT -->
+  <!-- CONFIGURAÇÃO DOS CHECKOUTS WIAPY -->
   <script>
-    // Insira seu link de checkout da Kiwify ou plataforma aqui:
-    window.CHECKOUT_URL = "https://pay.kiwify.com.br/";
+    // Link Principal de R$ 24,90
+    window.CHECKOUT_NORMAL = "https://pay.wiapy.com/tX2mj1jR9noK";
+    // Link Promocional / Downsell de R$ 19,90
+    window.CHECKOUT_DOWNSELL = "https://pay.wiapy.com/DdI1fh66JOQE";
 
+    // Função para ir ao checkout normal e registrar a intenção
     function irParaCheckout() {
+      sessionStorage.setItem('abriu_checkout', 'true');
       const params = window.location.search;
+      let url = window.CHECKOUT_NORMAL;
       if (params) {
-        const sep = window.CHECKOUT_URL.includes('?') ? '&' : '?';
-        window.location.href = window.CHECKOUT_URL + sep + params.substring(1);
-      } else {
-        window.location.href = window.CHECKOUT_URL;
+        url += (url.includes('?') ? '&' : '?') + params.substring(1);
       }
+      window.location.href = url;
+    }
+
+    // Função para ir ao checkout promocional de R$ 19,90
+    function irParaCheckoutDownsell() {
+      sessionStorage.removeItem('abriu_checkout');
+      sessionStorage.setItem('viu_downsell', 'true');
+      const params = window.location.search;
+      let url = window.CHECKOUT_DOWNSELL;
+      if (params) {
+        url += (url.includes('?') ? '&' : '?') + params.substring(1);
+      }
+      window.location.href = url;
     }
   </script>
 </head>
-<body class="bg-navy-900 text-slate-200">
+<body class="bg-white text-slate-800">
 
-  <!-- AVISO DE TOPO (DISCRETO E ELEGANTE) -->
-  <div class="bg-blue-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium">
-    <span>💡 Vagas do lote promocional: Acesso Vitalício + Certificado 40h por apenas <b>R$ 24,90</b></span>
+  <!-- AVISO DE TOPO (ESCASSEZ DISCRETA & ELEGANTE) -->
+  <div class="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium shadow-sm">
+    <span>💡 <b>Lote Promocional Liberado:</b> Acesso Vitalício + Certificado 40h por apenas <b>R$ 24,90</b></span>
   </div>
 
-  <!-- HERO SECTION (MOBILE FIRST & HARMONIOSO) -->
+  <!-- HERO SECTION (CLEAN, MODERNO & HARMONIOSO) -->
   <header class="pt-8 pb-12 sm:pt-14 sm:pb-16 px-4 max-w-3xl mx-auto text-center">
     
     <!-- TAG DISCRETA -->
-    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold mb-5">
-      <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold mb-4 shadow-sm">
+      <i data-lucide="check-circle" class="w-3.5 h-3.5 text-blue-600"></i>
       <span>Do Zero ao Certificado em 7 Dias</span>
     </div>
 
-    <!-- HEADLINE LIMPA E ALINHADA -->
-    <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight tracking-tight mb-4">
-      Aprenda informática prática e conquiste seu <span class="text-blue-400">certificado oficial</span> no currículo.
+    <!-- HEADLINE LIMPA E DE ALTO CONTRASTE -->
+    <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight mb-4">
+      Aprenda informática prática e conquiste seu <span class="text-blue-600 underline decoration-blue-300 decoration-wavy decoration-2">certificado oficial</span> no currículo.
     </h1>
 
     <!-- SUBHEADLINE CLARA -->
-    <p class="text-sm sm:text-base text-slate-400 max-w-xl mx-auto mb-7 leading-relaxed">
-      Sem termos difíceis em inglês e sem medo de errar. Um método passo a passo gravado na tela do computador para você se qualificar e não depender de ninguém.
+    <p class="text-sm sm:text-base text-slate-600 max-w-xl mx-auto mb-6 leading-relaxed">
+      Sem termos difíceis em inglês e sem medo de errar. Um método simples gravado na tela do computador para você se qualificar e não depender de favores.
     </p>
 
-    <!-- IMAGEM HERO: JOVEM CONQUISTANDO EMPREGO -->
-    <div class="relative w-full rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-950 custom-shadow mb-6 aspect-video sm:aspect-[16/9] group">
+    <!-- IMAGEM HERO: JOVEM CONQUISTANDO EMPREGO (100% LIMPA) -->
+    <div class="relative w-full rounded-2xl overflow-hidden border border-slate-200 shadow-xl mb-6 aspect-video sm:aspect-[16/9] group bg-slate-100">
       <img 
         src="/jovem-emprego.jpg" 
         alt="Jovem qualificado e contratado no primeiro emprego com certificado de informática" 
         class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
       />
+      <!-- Selo no topo da imagem -->
+      <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-slate-900/80 backdrop-blur-md px-3 py-1 rounded-full text-[11px] text-white shadow-md">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span class="font-medium">Formação Profissional</span>
+      </div>
     </div>
 
     <!-- BOTÃO PRINCIPAL (CTA) -->
     <div class="max-w-md mx-auto">
       <button 
         onclick="irParaCheckout()" 
-        class="on-page-cta w-full py-4 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-600 active:scale-[0.99] text-white font-bold text-base sm:text-lg shadow-lg shadow-emerald-500/20 transition duration-150 flex items-center justify-center gap-2">
+        class="on-page-cta w-full py-4 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] text-white font-extrabold text-base sm:text-lg shadow-lg shadow-emerald-600/25 transition duration-150 flex items-center justify-center gap-2">
         <span>Quero Me Inscrever por R$ 24,90</span>
         <i data-lucide="arrow-right" class="w-5 h-5"></i>
       </button>
 
-      <div class="flex items-center justify-center gap-4 text-xs text-slate-400 mt-3">
-        <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i> Pagamento Seguro</span>
-        <span class="flex items-center gap-1"><i data-lucide="award" class="w-3.5 h-3.5 text-amber-400"></i> Certificado Incluso</span>
-        <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-blue-400"></i> Acesso Imediato</span>
+      <div class="flex items-center justify-center gap-4 text-xs text-slate-500 mt-3 font-medium">
+        <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i> Pagamento Seguro</span>
+        <span class="flex items-center gap-1"><i data-lucide="award" class="w-4 h-4 text-amber-500"></i> Certificado Incluso</span>
+        <span class="flex items-center gap-1"><i data-lucide="clock" class="w-4 h-4 text-blue-600"></i> Acesso Imediato</span>
       </div>
     </div>
 
   </header>
 
-  <!-- 3 MOTIVOS CLAROS (LAYOUT LIMPO) -->
-  <section class="py-10 bg-navy-800/50 border-y border-slate-800/80 px-4">
+  <!-- 3 MOTIVOS CLAROS (CARDS BRANCOS COM BORDA SUAVE) -->
+  <section class="py-12 bg-slate-50 border-y border-slate-200 px-4">
     <div class="max-w-3xl mx-auto">
       
       <div class="text-center mb-8">
-        <h2 class="text-lg sm:text-2xl font-bold text-white">Por que fazer este treinamento?</h2>
+        <span class="text-blue-600 text-xs font-bold uppercase tracking-wider">Benefícios Imediatos</span>
+        <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">Por que fazer este treinamento?</h2>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         
-        <div class="p-5 rounded-xl bg-navy-800 border border-slate-700/60">
-          <div class="w-9 h-9 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center mb-3">
+        <div class="card-clean p-5 rounded-2xl">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
             <i data-lucide="briefcase" class="w-5 h-5"></i>
           </div>
-          <h3 class="text-sm font-bold text-white mb-1.5">Destaque no Currículo</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Mais de 80% das vagas de auxiliar, recepção e comércio exigem informática básica comprovada.
+          <h3 class="text-sm font-bold text-slate-900 mb-1.5">Vagas de Emprego</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Mais de 80% das vagas de auxiliar, recepção, balcão e jovem aprendiz exigem informática básica comprovada.
           </p>
         </div>
 
-        <div class="p-5 rounded-xl bg-navy-800 border border-slate-700/60">
-          <div class="w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-3">
+        <div class="card-clean p-5 rounded-2xl">
+          <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3">
             <i data-lucide="mouse-pointer" class="w-5 h-5"></i>
           </div>
-          <h3 class="text-sm font-bold text-white mb-1.5">Autonomia Total</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Faça tudo sozinho no computador: organize pastas, mande e-mails com arquivos e crie documentos sem pedir favor.
+          <h3 class="text-sm font-bold text-slate-900 mb-1.5">Autonomia Sem Favor</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Faça tudo sozinho no computador: crie pastas, envie e-mails com anexos e use o Word sem depender de ninguém.
           </p>
         </div>
 
-        <div class="p-5 rounded-xl bg-navy-800 border border-slate-700/60">
-          <div class="w-9 h-9 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center mb-3">
+        <div class="card-clean p-5 rounded-2xl">
+          <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3">
             <i data-lucide="award" class="w-5 h-5"></i>
           </div>
-          <h3 class="text-sm font-bold text-white mb-1.5">Certificado de 40 Horas</h3>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Documento com código de autenticidade, amparado por lei federal, sem taxa extra para emitir.
+          <h3 class="text-sm font-bold text-slate-900 mb-1.5">Certificado de 40 Horas</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Documento oficial com código de autenticidade, amparado por lei federal, sem taxa extra para emitir.
           </p>
         </div>
 
@@ -177,348 +204,437 @@
     </div>
   </section>
 
-  <!-- GRADE DE AULAS ORGANIZADA POR MÓDULOS (UI/UX IMPECÁVEL & HIERARQUIA CLARA) -->
+  <!-- PROVA SOCIAL / DEPOIMENTOS REAIS DE ALUNOS -->
   <section class="py-14 px-4 max-w-3xl mx-auto">
     
     <div class="text-center mb-10">
-      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-wider mb-2">
-        <i data-lucide="layers" class="w-3.5 h-3.5"></i>
-        Grade Curricular Completa
+      <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-2">
+        <i data-lucide="star" class="w-3.5 h-3.5 fill-emerald-500 text-emerald-500"></i>
+        Avaliação 4.9 de 5.0 Estrelas
       </span>
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">O que você vai dominar</h2>
-      <p class="text-xs sm:text-sm text-slate-400 mt-1 max-w-md mx-auto">
-        17 vídeo-aulas práticas divididas em 4 módulos estruturados para o seu aprendizado rápido.
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+        Quem fez, recomenda e aprova
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-md mx-auto">
+        Veja histórias reais de pessoas que transformaram sua relação com o computador.
       </p>
     </div>
 
-    <div class="space-y-4">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
       
-      <!-- MÓDULO 1 -->
-      <div class="rounded-2xl bg-navy-800/90 border border-slate-700/80 p-5 sm:p-6 custom-shadow transition hover:border-slate-600">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-700/60 mb-4">
-          <span class="text-xs font-black tracking-wider uppercase px-2.5 py-1 rounded-md bg-blue-500/20 text-blue-300 border border-blue-500/30">
-            MÓDULO 01
-          </span>
-          <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-            <i data-lucide="play-circle" class="w-3.5 h-3.5 text-blue-400"></i> 3 Aulas Fundamentais
-          </span>
+      <!-- DEPOIMENTO 1 -->
+      <div class="card-clean p-5 rounded-2xl flex flex-col justify-between">
+        <div>
+          <div class="flex text-amber-400 mb-3 text-sm">
+            ★★★★★
+          </div>
+          <p class="text-xs text-slate-700 italic leading-relaxed mb-4">
+            "Eu sempre travava quando pediam para enviar currículo com arquivo anexado no e-mail. Fiz as aulas no final de semana, peguei meu certificado na segunda-feira e na mesma semana fiz entrevista para recepcionista. Fui contratada!"
+          </p>
         </div>
-
-        <h3 class="text-lg sm:text-xl font-extrabold text-white tracking-tight mb-4">
-          Primeiros Passos no Computador
-        </h3>
-
-        <div class="space-y-2.5">
-          <div class="flex items-start gap-3 p-2.5 rounded-lg bg-navy-900/60 border border-slate-700/40">
-            <div class="w-6 h-6 rounded bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">1</div>
-            <div>
-              <div class="text-xs sm:text-sm font-bold text-slate-100">Comandos do Teclado</div>
-              <div class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">Conheça cada tecla: Caps Lock, Shift, Tab, Enter, acentuação e atalhos de digitação.</div>
-            </div>
+        <div class="flex items-center gap-2.5 pt-3 border-t border-slate-100">
+          <div class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center">
+            MC
           </div>
-
-          <div class="flex items-start gap-3 p-2.5 rounded-lg bg-navy-900/60 border border-slate-700/40">
-            <div class="w-6 h-6 rounded bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">2</div>
-            <div>
-              <div class="text-xs sm:text-sm font-bold text-slate-100">Mouse e Touchpad</div>
-              <div class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">Botão esquerdo, direito, barra de rolagem, zoom e uso seguro em notebooks.</div>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-3 p-2.5 rounded-lg bg-navy-900/60 border border-slate-700/40">
-            <div class="w-6 h-6 rounded bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">3</div>
-            <div>
-              <div class="text-xs sm:text-sm font-bold text-slate-100">Janelas no Windows</div>
-              <div class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">Como minimizar, maximizar, restaurar e fechar programas sem confusão.</div>
-            </div>
+          <div>
+            <div class="text-xs font-bold text-slate-900">Mariana Costa</div>
+            <div class="text-[10px] text-slate-500">Recepcionista • 21 anos</div>
           </div>
         </div>
       </div>
 
-      <!-- MÓDULO 2 -->
-      <div class="rounded-2xl bg-navy-800/90 border border-slate-700/80 p-5 sm:p-6 custom-shadow transition hover:border-slate-600">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-700/60 mb-4">
-          <span class="text-xs font-black tracking-wider uppercase px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-            MÓDULO 02
-          </span>
-          <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-            <i data-lucide="play-circle" class="w-3.5 h-3.5 text-emerald-400"></i> 8 Aulas Práticas
-          </span>
+      <!-- DEPOIMENTO 2 -->
+      <div class="card-clean p-5 rounded-2xl flex flex-col justify-between">
+        <div>
+          <div class="flex text-amber-400 mb-3 text-sm">
+            ★★★★★
+          </div>
+          <p class="text-xs text-slate-700 italic leading-relaxed mb-4">
+            "Tenho 52 anos e tinha pavor de mexer no computador com medo de apagar alguma coisa. O professor explica com muita paciência e calma. Hoje organizo todos os documentos da minha loja sozinho e não preciso mais pedir favor pro meu filho."
+          </p>
         </div>
-
-        <h3 class="text-lg sm:text-xl font-extrabold text-white tracking-tight mb-4">
-          Sistema Operacional, Pastas & Organização
-        </h3>
-
-        <div class="space-y-2.5">
-          <div class="flex items-start gap-3 p-2.5 rounded-lg bg-navy-900/60 border border-slate-700/40">
-            <div class="w-6 h-6 rounded bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">4</div>
-            <div>
-              <div class="text-xs sm:text-sm font-bold text-slate-100">Área de Trabalho & Criação de Atalhos (Aulas 4 a 7)</div>
-              <div class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">Organização de ícones na tela, alinhamento automático e atalhos rápidos.</div>
-            </div>
+        <div class="flex items-center gap-2.5 pt-3 border-t border-slate-100">
+          <div class="w-8 h-8 rounded-full bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">
+            RS
           </div>
-
-          <div class="flex items-start gap-3 p-2.5 rounded-lg bg-navy-900/60 border border-slate-700/40">
-            <div class="w-6 h-6 rounded bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">5</div>
-            <div>
-              <div class="text-xs sm:text-sm font-bold text-slate-100">Configurações, Som & Dispositivos (Aulas 8 a 11)</div>
-              <div class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">Menu Iniciar de A a Z, controle de volume, notificações e conexão de pendrive e impressora.</div>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-3 p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/40">
-            <div class="w-6 h-6 rounded bg-emerald-500 text-slate-950 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">★</div>
-            <div>
-              <div class="text-xs sm:text-sm font-bold text-emerald-300">Explorador de Arquivos & Pastas (Aula 12 - Crucial para o Trabalho)</div>
-              <div class="text-[11px] text-slate-300 mt-0.5 leading-relaxed">O que as empresas mais cobram: criar pastas, copiar (Ctrl+C), colar (Ctrl+V) e recortar.</div>
-            </div>
+          <div>
+            <div class="text-xs font-bold text-slate-900">Roberto Silveira</div>
+            <div class="text-[10px] text-slate-500">Comerciante • 52 anos</div>
           </div>
         </div>
       </div>
 
-      <!-- MÓDULO 3 -->
-      <div class="rounded-2xl bg-navy-800/90 border border-slate-700/80 p-5 sm:p-6 custom-shadow transition hover:border-slate-600">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-700/60 mb-4">
-          <span class="text-xs font-black tracking-wider uppercase px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/30">
-            MÓDULO 03
-          </span>
-          <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-            <i data-lucide="play-circle" class="w-3.5 h-3.5 text-amber-400"></i> Ferramentas Essenciais
-          </span>
+      <!-- DEPOIMENTO 3 -->
+      <div class="card-clean p-5 rounded-2xl flex flex-col justify-between">
+        <div>
+          <div class="flex text-amber-400 mb-3 text-sm">
+            ★★★★★
+          </div>
+          <p class="text-xs text-slate-700 italic leading-relaxed mb-4">
+            "Precisava urgente de 40 horas complementares para a faculdade de Administração. Assisti todas as aulas, chamei no WhatsApp e me enviaram o certificado rapidinho com código de autenticidade. Aceitaram de primeira na faculdade!"
+          </p>
         </div>
-
-        <h3 class="text-lg sm:text-xl font-extrabold text-white tracking-tight mb-4">
-          Aplicativos Úteis & Noções de Pacote Office
-        </h3>
-
-        <div class="space-y-2.5">
-          <div class="flex items-start gap-3 p-2.5 rounded-lg bg-navy-900/60 border border-slate-700/40">
-            <div class="w-6 h-6 rounded bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">6</div>
-            <div>
-              <div class="text-xs sm:text-sm font-bold text-slate-100">Calculadora, Calendário e Relógio (Aula 13)</div>
-              <div class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">Operações matemáticas rápidas, agendamento de tarefas e alarmes no sistema.</div>
-            </div>
+        <div class="flex items-center gap-2.5 pt-3 border-t border-slate-100">
+          <div class="w-8 h-8 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">
+            GF
           </div>
-
-          <div class="flex items-start gap-3 p-2.5 rounded-lg bg-navy-900/60 border border-slate-700/40">
-            <div class="w-6 h-6 rounded bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">7</div>
-            <div>
-              <div class="text-xs sm:text-sm font-bold text-slate-100">Noções Práticas: Word, Excel e PowerPoint</div>
-              <div class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">Como funcionam as guias de edição de textos, planilhas simples e apresentações de slides.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MÓDULO 4 -->
-      <div class="rounded-2xl bg-navy-800/90 border border-slate-700/80 p-5 sm:p-6 custom-shadow transition hover:border-slate-600">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-700/60 mb-4">
-          <span class="text-xs font-black tracking-wider uppercase px-2.5 py-1 rounded-md bg-purple-500/20 text-purple-300 border border-purple-500/30">
-            MÓDULO 04
-          </span>
-          <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-            <i data-lucide="play-circle" class="w-3.5 h-3.5 text-purple-400"></i> 4 Aulas Finais
-          </span>
-        </div>
-
-        <h3 class="text-lg sm:text-xl font-extrabold text-white tracking-tight mb-4">
-          Internet, E-mail Gmail & Certificação
-        </h3>
-
-        <div class="space-y-2.5">
-          <div class="flex items-start gap-3 p-2.5 rounded-lg bg-navy-900/60 border border-slate-700/40">
-            <div class="w-6 h-6 rounded bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">8</div>
-            <div>
-              <div class="text-xs sm:text-sm font-bold text-slate-100">Acesso à Internet & Navegação Segura (Aula 14)</div>
-              <div class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">Conexão Wi-Fi, uso do Google Chrome, abas, favoritos e pesquisas no Google.</div>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-3 p-2.5 rounded-lg bg-navy-900/60 border border-slate-700/40">
-            <div class="w-6 h-6 rounded bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">9</div>
-            <div>
-              <div class="text-xs sm:text-sm font-bold text-slate-100">Criando seu E-mail no Gmail (Aula 15)</div>
-              <div class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">Cadastro do seu primeiro e-mail, envio de mensagens e como anexar arquivos e fotos.</div>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-3 p-2.5 rounded-lg bg-navy-900/60 border border-slate-700/40">
-            <div class="w-6 h-6 rounded bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">10</div>
-            <div>
-              <div class="text-xs sm:text-sm font-bold text-slate-100">YouTube, Redes Sociais & Conclusão (Aulas 16 e 17)</div>
-              <div class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">Busca de vídeos, cuidados com segurança online e como solicitar seu certificado.</div>
-            </div>
+          <div>
+            <div class="text-xs font-bold text-slate-900">Gabriela Ferreira</div>
+            <div class="text-[10px] text-slate-500">Estudante • 23 anos</div>
           </div>
         </div>
       </div>
 
     </div>
 
+  </section>
+
+  <!-- GRADE DE AULAS ORGANIZADA POR MÓDULOS -->
+  <section class="py-14 bg-slate-50 border-t border-slate-200 px-4">
+    <div class="max-w-3xl mx-auto">
+      
+      <div class="text-center mb-10">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wider mb-2">
+          <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+          Grade Curricular Completa
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">O que você vai dominar</h2>
+        <p class="text-xs sm:text-sm text-slate-600 mt-1 max-w-md mx-auto">
+          17 vídeo-aulas práticas divididas em 4 módulos estruturados para o seu aprendizado rápido.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        
+        <!-- MÓDULO 1 -->
+        <div class="card-clean rounded-2xl p-5 sm:p-6">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
+            <span class="text-xs font-extrabold tracking-wider uppercase px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
+              MÓDULO 01
+            </span>
+            <span class="text-[11px] font-semibold text-slate-500 flex items-center gap-1">
+              <i data-lucide="play-circle" class="w-3.5 h-3.5 text-blue-600"></i> 3 Aulas Fundamentais
+            </span>
+          </div>
+
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight mb-3">
+            Primeiros Passos no Computador
+          </h3>
+
+          <div class="space-y-2">
+            <div class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200/70">
+              <div class="w-6 h-6 rounded bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">1</div>
+              <div>
+                <div class="text-xs sm:text-sm font-bold text-slate-800">Comandos do Teclado</div>
+                <div class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Conheça cada tecla: Caps Lock, Shift, Tab, Enter, acentuação e atalhos rápidos.</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200/70">
+              <div class="w-6 h-6 rounded bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">2</div>
+              <div>
+                <div class="text-xs sm:text-sm font-bold text-slate-800">Mouse e Touchpad</div>
+                <div class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Botão esquerdo, direito, barra de rolagem, zoom e uso seguro em notebooks.</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200/70">
+              <div class="w-6 h-6 rounded bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">3</div>
+              <div>
+                <div class="text-xs sm:text-sm font-bold text-slate-800">Janelas no Windows</div>
+                <div class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Como minimizar, maximizar, restaurar e fechar programas sem confusão.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MÓDULO 2 -->
+        <div class="card-clean rounded-2xl p-5 sm:p-6">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
+            <span class="text-xs font-extrabold tracking-wider uppercase px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200">
+              MÓDULO 02
+            </span>
+            <span class="text-[11px] font-semibold text-slate-500 flex items-center gap-1">
+              <i data-lucide="play-circle" class="w-3.5 h-3.5 text-emerald-600"></i> 8 Aulas Práticas
+            </span>
+          </div>
+
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight mb-3">
+            Sistema Operacional, Pastas & Organização
+          </h3>
+
+          <div class="space-y-2">
+            <div class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200/70">
+              <div class="w-6 h-6 rounded bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">4</div>
+              <div>
+                <div class="text-xs sm:text-sm font-bold text-slate-800">Área de Trabalho & Criação de Atalhos (Aulas 4 a 7)</div>
+                <div class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Organização de ícones na tela, alinhamento automático e atalhos rápidos.</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200/70">
+              <div class="w-6 h-6 rounded bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">5</div>
+              <div>
+                <div class="text-xs sm:text-sm font-bold text-slate-800">Configurações, Som & Dispositivos (Aulas 8 a 11)</div>
+                <div class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Menu Iniciar de A a Z, controle de volume, notificações e conexão de pendrive e impressora.</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-2.5 rounded-xl bg-emerald-50/80 border border-emerald-300">
+              <div class="w-6 h-6 rounded bg-emerald-600 text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">★</div>
+              <div>
+                <div class="text-xs sm:text-sm font-bold text-emerald-900">Explorador de Arquivos & Pastas (Aula 12 - Crucial para o Trabalho)</div>
+                <div class="text-[11px] text-emerald-700 mt-0.5 leading-relaxed">O que as empresas mais cobram: criar pastas, copiar (Ctrl+C), colar (Ctrl+V) e recortar.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MÓDULO 3 -->
+        <div class="card-clean rounded-2xl p-5 sm:p-6">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
+            <span class="text-xs font-extrabold tracking-wider uppercase px-2.5 py-1 rounded-md bg-amber-50 text-amber-700 border border-amber-200">
+              MÓDULO 03
+            </span>
+            <span class="text-[11px] font-semibold text-slate-500 flex items-center gap-1">
+              <i data-lucide="play-circle" class="w-3.5 h-3.5 text-amber-600"></i> Ferramentas Essenciais
+            </span>
+          </div>
+
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight mb-3">
+            Aplicativos Úteis & Noções de Pacote Office
+          </h3>
+
+          <div class="space-y-2">
+            <div class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200/70">
+              <div class="w-6 h-6 rounded bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">6</div>
+              <div>
+                <div class="text-xs sm:text-sm font-bold text-slate-800">Calculadora, Calendário e Relógio (Aula 13)</div>
+                <div class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Operações matemáticas rápidas, agendamento de tarefas e alarmes no sistema.</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200/70">
+              <div class="w-6 h-6 rounded bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">7</div>
+              <div>
+                <div class="text-xs sm:text-sm font-bold text-slate-800">Noções Práticas: Word, Excel e PowerPoint</div>
+                <div class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Como funcionam as guias de edição de textos, planilhas simples e apresentações de slides.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MÓDULO 4 -->
+        <div class="card-clean rounded-2xl p-5 sm:p-6">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
+            <span class="text-xs font-extrabold tracking-wider uppercase px-2.5 py-1 rounded-md bg-purple-50 text-purple-700 border border-purple-200">
+              MÓDULO 04
+            </span>
+            <span class="text-[11px] font-semibold text-slate-500 flex items-center gap-1">
+              <i data-lucide="play-circle" class="w-3.5 h-3.5 text-purple-600"></i> 4 Aulas Finais
+            </span>
+          </div>
+
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight mb-3">
+            Internet, E-mail Gmail & Certificação
+          </h3>
+
+          <div class="space-y-2">
+            <div class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200/70">
+              <div class="w-6 h-6 rounded bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">8</div>
+              <div>
+                <div class="text-xs sm:text-sm font-bold text-slate-800">Acesso à Internet & Navegação Segura (Aula 14)</div>
+                <div class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Conexão Wi-Fi, uso do Google Chrome, abas, favoritos e pesquisas no Google.</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200/70">
+              <div class="w-6 h-6 rounded bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">9</div>
+              <div>
+                <div class="text-xs sm:text-sm font-bold text-slate-800">Criando seu E-mail no Gmail (Aula 15)</div>
+                <div class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Cadastro do seu primeiro e-mail, envio de mensagens e como anexar arquivos e fotos.</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200/70">
+              <div class="w-6 h-6 rounded bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">10</div>
+              <div>
+                <div class="text-xs sm:text-sm font-bold text-slate-800">YouTube, Redes Sociais & Conclusão (Aulas 16 e 17)</div>
+                <div class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Busca de vídeos, cuidados com segurança online e como solicitar seu certificado.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
   </section>
 
   <!-- O CERTIFICADO DE CONCLUSÃO (VISUAL COM A FOTO DO CERTIFICADO REAL) -->
-  <section class="py-14 bg-navy-800/60 border-y border-slate-800 px-4">
-    <div class="max-w-3xl mx-auto">
+  <section class="py-14 px-4 max-w-3xl mx-auto">
+    
+    <div class="card-clean rounded-3xl p-6 sm:p-9 border-2 border-amber-300 bg-gradient-to-b from-amber-50/40 via-white to-white">
       
-      <div class="rounded-3xl bg-gradient-to-b from-slate-900 to-navy-800 p-6 sm:p-9 border border-amber-500/40 custom-shadow">
-        
-        <div class="text-center max-w-xl mx-auto mb-6">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2">
-            <i data-lucide="award" class="w-4 h-4"></i>
-            Certificado 100% Incluso (Sem Taxa Extra)
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Seu Certificado Oficial de 40 Horas
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed">
-            Emitido com seu nome completo, código único de autenticidade e válido em todo o território nacional.
-          </p>
-        </div>
+      <div class="text-center max-w-xl mx-auto mb-6">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wider mb-2">
+          <i data-lucide="award" class="w-4 h-4 text-amber-600"></i>
+          Certificado 100% Incluso (Sem Taxa Extra)
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Seu Certificado Oficial de 40 Horas
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
+          Emitido com seu nome completo, código único de autenticidade e válido em todo o território nacional.
+        </p>
+      </div>
 
-        <!-- FOTO REAL DO CERTIFICADO EM ALTA RESOLUÇÃO -->
-        <div class="mb-8 group">
-          <div class="relative rounded-2xl overflow-hidden border-2 border-amber-500/40 shadow-2xl bg-white p-1.5 sm:p-2.5 transition duration-300 group-hover:scale-[1.01]">
-            <img 
-              src="/certificado-real.png" 
-              alt="Modelo oficial do Certificado de Conclusão do Curso de Informática Básica" 
-              class="w-full h-auto rounded-xl object-contain shadow-inner"
-            />
-          </div>
-          <p class="text-center text-[11px] text-slate-400 mt-2.5 flex items-center justify-center gap-1.5">
-            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-amber-400"></i>
-            <span>Documento emitido em PDF de alta qualidade para você imprimir e anexar ao currículo</span>
-          </p>
+      <!-- FOTO REAL DO CERTIFICADO EM ALTA RESOLUÇÃO -->
+      <div class="mb-6 group">
+        <div class="relative rounded-2xl overflow-hidden border-2 border-amber-400 shadow-xl bg-white p-1 sm:p-2 transition duration-300 group-hover:scale-[1.01]">
+          <img 
+            src="/certificado-real.png" 
+            alt="Modelo oficial do Certificado de Conclusão do Curso de Informática Básica" 
+            class="w-full h-auto rounded-xl object-contain shadow-sm"
+          />
         </div>
+        <p class="text-center text-[11px] text-slate-500 mt-2.5 flex items-center justify-center gap-1.5 font-medium">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-amber-600"></i>
+          <span>Documento emitido em PDF de alta resolução para impressão e currículo</span>
+        </p>
+      </div>
 
-        <!-- 3 PONTOS FORTES DE VALIDADE -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 border-t border-slate-700/60 mb-6">
-          <div class="flex items-start gap-2.5 p-3 rounded-xl bg-navy-900/60 border border-slate-700/40">
-            <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
-            <span class="text-xs text-slate-300"><b>Carga de 40 Horas</b> aceita em faculdades e concursos.</span>
+      <!-- 3 PONTOS FORTES DE VALIDADE -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 border-t border-slate-200 mb-6">
+        <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5"></i>
+          <span class="text-xs text-slate-700"><b>Carga de 40 Horas</b> aceita em faculdades e empresas.</span>
+        </div>
+        <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5"></i>
+          <span class="text-xs text-slate-700"><b>Amparo Federal:</b> Lei nº 9.394/96 e Dec. nº 5.154/04.</span>
+        </div>
+        <div class="flex items-start gap-2.5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5"></i>
+          <span class="text-xs text-slate-700"><b>Código de Autenticidade</b> para validação por RH.</span>
+        </div>
+      </div>
+
+      <!-- BOX WHATSAPP SUPORTE -->
+      <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between flex-col sm:flex-row gap-3 text-center sm:text-left">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center flex-shrink-0 mx-auto shadow-sm">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
           </div>
-          <div class="flex items-start gap-2.5 p-3 rounded-xl bg-navy-900/60 border border-slate-700/40">
-            <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
-            <span class="text-xs text-slate-300"><b>Amparo Federal:</b> Lei nº 9.394/96 e Dec. nº 5.154/04.</span>
-          </div>
-          <div class="flex items-start gap-2.5 p-3 rounded-xl bg-navy-900/60 border border-slate-700/40">
-            <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
-            <span class="text-xs text-slate-300"><b>Código de Autenticidade</b> para validação por RH.</span>
+          <div>
+            <div class="text-xs font-bold text-slate-900">Emissão Rápida pelo WhatsApp</div>
+            <div class="text-[11px] text-emerald-800">Ao concluir, basta enviar mensagem para <b>(11) 91679-2829</b> com seu nome</div>
           </div>
         </div>
-
-        <!-- BOX WHATSAPP SUPORTE -->
-        <div class="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/30 flex items-center justify-between flex-col sm:flex-row gap-3 text-center sm:text-left">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 mx-auto">
-              <i data-lucide="message-circle" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <div class="text-xs font-bold text-white">Emissão Rápida pelo WhatsApp</div>
-              <div class="text-[11px] text-emerald-300">Ao concluir, basta enviar mensagem para <b>(11) 91679-2829</b> com seu nome</div>
-            </div>
-          </div>
-          <span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded-lg border border-emerald-500/20 whitespace-nowrap">
-            100% Gratuito
-          </span>
-        </div>
-
+        <span class="text-xs font-bold text-emerald-700 bg-white px-3 py-1.5 rounded-lg border border-emerald-300 shadow-sm whitespace-nowrap">
+          100% Incluso
+        </span>
       </div>
 
     </div>
+
   </section>
 
   <!-- BÔNUS DE GRAÇA (VISUAL COM CAPA DA APOSTILA) -->
-  <section class="py-14 px-4 max-w-3xl mx-auto">
-    <div class="text-center mb-8">
-      <span class="text-amber-400 text-xs font-semibold tracking-wider uppercase">Vantagens Exclusivas</span>
-      <h2 class="text-xl sm:text-3xl font-extrabold text-white mt-1">Você também recebe de presente:</h2>
-    </div>
-
-    <div class="space-y-3.5">
+  <section class="py-14 bg-slate-50 border-t border-slate-200 px-4">
+    <div class="max-w-3xl mx-auto">
       
-      <!-- BÔNUS 1: APOSTILA COM FOTO -->
-      <div class="p-4 sm:p-5 rounded-2xl bg-navy-800 border border-slate-700/70 flex flex-col sm:flex-row items-center gap-4 custom-shadow">
-        <div class="w-24 sm:w-28 flex-shrink-0 rounded-lg overflow-hidden border border-slate-600 shadow-md">
-          <img src="/apostila-capa.png" alt="Capa da Apostila de Informática Básica" class="w-full h-auto object-cover" />
-        </div>
-        <div class="text-center sm:text-left flex-1">
-          <div class="inline-block text-[10px] font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 mb-1.5 uppercase">BÔNUS 1 • LIVRO DIGITAL</div>
-          <h3 class="text-sm sm:text-base font-extrabold text-white">Apostila Completa Ilustrada em PDF (45 Páginas)</h3>
-          <p class="text-xs text-slate-400 mt-1 leading-relaxed">
-            Manual visual com todas as imagens, telas, conceitos de hardware, software e passo a passo para consulta rápida mesmo sem internet.
-          </p>
-          <div class="text-xs font-bold text-emerald-400 mt-2">HOJE: GRÁTIS (Valor avulso R$ 37,00)</div>
-        </div>
+      <div class="text-center mb-8">
+        <span class="text-blue-600 text-xs font-bold tracking-wider uppercase">Vantagens Exclusivas</span>
+        <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-1">Você também recebe de presente:</h2>
       </div>
 
-      <!-- BÔNUS 2 -->
-      <div class="p-4 sm:p-5 rounded-2xl bg-navy-800 border border-slate-700/70 flex items-start gap-3.5">
-        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <i data-lucide="zap" class="w-5 h-5"></i>
+      <div class="space-y-3.5">
+        
+        <!-- BÔNUS 1: APOSTILA COM FOTO -->
+        <div class="card-clean p-4 sm:p-5 rounded-2xl flex flex-col sm:flex-row items-center gap-4">
+          <div class="w-24 sm:w-28 flex-shrink-0 rounded-lg overflow-hidden border border-slate-300 shadow-md">
+            <img src="/apostila-capa.png" alt="Capa da Apostila de Informática Básica" class="w-full h-auto object-cover" />
+          </div>
+          <div class="text-center sm:text-left flex-1">
+            <div class="inline-block text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-700 mb-1.5 uppercase">BÔNUS 1 • LIVRO DIGITAL</div>
+            <h3 class="text-sm sm:text-base font-extrabold text-slate-900">Apostila Completa Ilustrada em PDF (45 Páginas)</h3>
+            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+              Manual visual com todas as imagens, telas, conceitos de hardware, software e passo a passo para consulta rápida mesmo sem internet.
+            </p>
+            <div class="text-xs font-bold text-emerald-600 mt-2">HOJE: GRÁTIS (Valor avulso R$ 37,00)</div>
+          </div>
         </div>
-        <div class="flex-1">
-          <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider mb-0.5">BÔNUS 2 • FOLHA RÁPIDA</div>
-          <h3 class="text-sm sm:text-base font-bold text-white">Guia Prático dos 50 Atalhos de Ouro</h3>
-          <p class="text-xs text-slate-400 mt-0.5">Lista de colar na parede com os atalhos de teclado mais cobrados em testes de empresas.</p>
-          <div class="text-xs font-bold text-emerald-400 mt-1">HOJE: GRÁTIS</div>
-        </div>
-      </div>
 
-      <!-- BÔNUS 3 -->
-      <div class="p-4 sm:p-5 rounded-2xl bg-navy-800 border border-slate-700/70 flex items-start gap-3.5">
-        <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <i data-lucide="file-text" class="w-5 h-5"></i>
+        <!-- BÔNUS 2 -->
+        <div class="card-clean p-4 sm:p-5 rounded-2xl flex items-start gap-3.5">
+          <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <i data-lucide="zap" class="w-5 h-5"></i>
+          </div>
+          <div class="flex-1">
+            <div class="text-[10px] font-bold text-emerald-600 uppercase tracking-wider mb-0.5">BÔNUS 2 • GUIA PRÁTICO</div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900">Guia Prático dos 50 Atalhos de Ouro</h3>
+            <p class="text-xs text-slate-600 mt-0.5">Lista de atalhos de teclado mais cobrados em testes de empresas para agilizar seu trabalho.</p>
+            <div class="text-xs font-bold text-emerald-600 mt-1">HOJE: GRÁTIS</div>
+          </div>
         </div>
-        <div class="flex-1">
-          <div class="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-0.5">BÔNUS 3 • MODELO PRONTO</div>
-          <h3 class="text-sm sm:text-base font-bold text-white">Modelo de Currículo Profissional Campeão</h3>
-          <p class="text-xs text-slate-400 mt-0.5">Formatado no padrão aprovado por recrutadores de RH, pronto para você preencher e enviar.</p>
-          <div class="text-xs font-bold text-emerald-400 mt-1">HOJE: GRÁTIS</div>
+
+        <!-- BÔNUS 3 -->
+        <div class="card-clean p-4 sm:p-5 rounded-2xl flex items-start gap-3.5">
+          <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <i data-lucide="file-text" class="w-5 h-5"></i>
+          </div>
+          <div class="flex-1">
+            <div class="text-[10px] font-bold text-amber-600 uppercase tracking-wider mb-0.5">BÔNUS 3 • MODELO PRONTO</div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900">Modelo de Currículo Profissional Campeão</h3>
+            <p class="text-xs text-slate-600 mt-0.5">Formatado no padrão aprovado por recrutadores de RH, pronto para você preencher e enviar.</p>
+            <div class="text-xs font-bold text-emerald-600 mt-1">HOJE: GRÁTIS</div>
+          </div>
         </div>
+
       </div>
 
     </div>
   </section>
 
   <!-- OFERTA FINAL & BOTÃO DE COMPRA -->
-  <section class="py-12 bg-navy-800/80 border-t border-slate-800 px-4" id="comprar">
+  <section class="py-14 px-4 bg-white" id="comprar">
     <div class="max-w-md mx-auto text-center">
       
-      <div class="p-6 sm:p-8 rounded-2xl bg-navy-800 border-2 border-emerald-500/60 custom-shadow">
+      <div class="card-clean-glow p-6 sm:p-8 rounded-3xl">
         
-        <span class="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold mb-3">
-          TAXA ÚNICA PROMOCIONAL
+        <span class="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-extrabold mb-3">
+          OFERTA ESPECIAL COM CERTIFICADO
         </span>
 
-        <h3 class="text-xl font-extrabold text-white mb-1">Acesso Vitalício ao Curso</h3>
-        <p class="text-xs text-slate-400 mb-5">17 Vídeo-Aulas + Apostila + Certificado de 40 Horas</p>
+        <h3 class="text-xl font-extrabold text-slate-900 mb-1">Acesso Vitalício ao Curso</h3>
+        <p class="text-xs text-slate-500 mb-5">17 Vídeo-Aulas + Apostila 45 Pág + Certificado 40h Incluso</p>
 
         <div class="mb-5">
-          <span class="text-xs text-slate-500 line-through">De R$ 97,00 por apenas</span>
-          <div class="text-4xl sm:text-5xl font-black text-white mt-1">
-            <span class="text-xl font-bold text-emerald-400 align-top">R$</span> 24,90
+          <span class="text-xs text-slate-400 line-through">De R$ 97,00 por apenas</span>
+          <div class="text-4xl sm:text-5xl font-black text-slate-900 mt-1">
+            <span class="text-xl font-bold text-emerald-600 align-top">R$</span> 24,90
           </div>
-          <span class="text-xs text-slate-400 mt-1 block">Pagamento único • Sem mensalidades</span>
+          <span class="text-xs text-slate-500 mt-1 block">Pagamento único • Sem mensalidades</span>
         </div>
 
         <button 
           onclick="irParaCheckout()" 
-          class="on-page-cta w-full py-4 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-600 active:scale-[0.99] text-white font-bold text-base sm:text-lg shadow-lg shadow-emerald-500/20 transition duration-150 flex items-center justify-center gap-2 mb-3">
+          class="on-page-cta w-full py-4 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] text-white font-extrabold text-base sm:text-lg shadow-lg shadow-emerald-600/25 transition duration-150 flex items-center justify-center gap-2 mb-3">
           <span>Quero Garantir Minha Vaga</span>
           <i data-lucide="arrow-right" class="w-5 h-5"></i>
         </button>
 
-        <p class="text-[11px] text-slate-400 mb-5">
-          Receba seu acesso imediatamente no e-mail após a confirmação.
+        <p class="text-[11px] text-slate-500 mb-5">
+          Acesso liberado imediatamente no e-mail após a confirmação.
         </p>
 
-        <!-- GARANTIA DISCRETA -->
-        <div class="pt-4 border-t border-slate-700/60 flex items-center justify-center gap-3 text-left">
-          <i data-lucide="shield-check" class="w-8 h-8 text-emerald-400 flex-shrink-0"></i>
+        <!-- GARANTIA -->
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-center gap-3 text-left">
+          <i data-lucide="shield-check" class="w-8 h-8 text-emerald-600 flex-shrink-0"></i>
           <div>
-            <div class="text-xs font-bold text-white">Garantia de 7 Dias</div>
-            <div class="text-[11px] text-slate-400">Se não gostar, devolvemos 100% do seu dinheiro.</div>
+            <div class="text-xs font-bold text-slate-900">Garantia Incondicional de 7 Dias</div>
+            <div class="text-[11px] text-slate-500">Se não gostar, devolvemos 100% do seu dinheiro. Sem burocracia.</div>
           </div>
         </div>
 
@@ -528,88 +644,202 @@
   </section>
 
   <!-- FAQ LIMPO (ACCORDION) -->
-  <section class="py-12 px-4 max-w-2xl mx-auto">
-    <div class="text-center mb-6">
-      <h2 class="text-lg sm:text-2xl font-bold text-white">Dúvidas Frequentes</h2>
-    </div>
+  <section class="py-12 bg-slate-50 border-t border-slate-200 px-4">
+    <div class="max-w-2xl mx-auto">
+      <div class="text-center mb-6">
+        <h2 class="text-lg sm:text-2xl font-bold text-slate-900">Dúvidas Frequentes</h2>
+      </div>
 
-    <div class="space-y-2.5">
-      
-      <details class="p-3.5 rounded-xl bg-navy-800 border border-slate-700/60 group cursor-pointer">
-        <summary class="text-xs sm:text-sm font-semibold text-white flex items-center justify-between list-none">
-          <span>Nunca mexi em computador, vou conseguir aprender?</span>
-          <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition"></i>
-        </summary>
-        <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-          Sim! O curso parte do absoluto zero: ensina os botões do mouse, as teclas do teclado e cada clique passo a passo com calma.
-        </p>
-      </details>
+      <div class="space-y-2.5">
+        
+        <details class="card-clean p-4 rounded-xl group cursor-pointer">
+          <summary class="text-xs sm:text-sm font-bold text-slate-900 flex items-center justify-between list-none">
+            <span>Nunca mexi em computador, vou conseguir aprender?</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition"></i>
+          </summary>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Sim! O curso parte do zero absoluto: ensina os botões do mouse, as teclas do teclado e cada clique passo a passo com calma.
+          </p>
+        </details>
 
-      <details class="p-3.5 rounded-xl bg-navy-800 border border-slate-700/60 group cursor-pointer">
-        <summary class="text-xs sm:text-sm font-semibold text-white flex items-center justify-between list-none">
-          <span>Posso assistir as aulas pelo celular?</span>
-          <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition"></i>
-        </summary>
-        <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-          Sim! Você pode assistir tanto pelo celular quanto por computador, tablet ou notebook.
-        </p>
-      </details>
+        <details class="card-clean p-4 rounded-xl group cursor-pointer">
+          <summary class="text-xs sm:text-sm font-bold text-slate-900 flex items-center justify-between list-none">
+            <span>Posso assistir as aulas pelo celular?</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition"></i>
+          </summary>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Sim! Você pode assistir tanto pelo celular quanto por computador, tablet ou notebook.
+          </p>
+        </details>
 
-      <details class="p-3.5 rounded-xl bg-navy-800 border border-slate-700/60 group cursor-pointer">
-        <summary class="text-xs sm:text-sm font-semibold text-white flex items-center justify-between list-none">
-          <span>Como recebo meu Certificado de 40 Horas?</span>
-          <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition"></i>
-        </summary>
-        <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-          Ao finalizar as aulas, basta enviar uma mensagem no WhatsApp do nosso suporte acadêmico <b>(11) 91679-2829</b> para emitirmos seu certificado oficial personalizado em PDF.
-        </p>
-      </details>
+        <details class="card-clean p-4 rounded-xl group cursor-pointer">
+          <summary class="text-xs sm:text-sm font-bold text-slate-900 flex items-center justify-between list-none">
+            <span>Como recebo meu Certificado de 40 Horas?</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition"></i>
+          </summary>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Ao finalizar as aulas, basta enviar uma mensagem no WhatsApp do nosso suporte acadêmico <b>(11) 91679-2829</b> para emitirmos seu certificado oficial personalizado em PDF.
+          </p>
+        </details>
 
-      <details class="p-3.5 rounded-xl bg-navy-800 border border-slate-700/60 group cursor-pointer">
-        <summary class="text-xs sm:text-sm font-semibold text-white flex items-center justify-between list-none">
-          <span>Tem mensalidade ou cobrança recorrente?</span>
-          <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition"></i>
-        </summary>
-        <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-          Não! O valor de R$ 24,90 é taxa única, sem mensalidades e com acesso vitalício.
-        </p>
-      </details>
+        <details class="card-clean p-4 rounded-xl group cursor-pointer">
+          <summary class="text-xs sm:text-sm font-bold text-slate-900 flex items-center justify-between list-none">
+            <span>Tem mensalidade ou cobrança recorrente?</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition"></i>
+          </summary>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Não! O valor de R$ 24,90 é taxa única, sem mensalidades e com acesso vitalício.
+          </p>
+        </details>
 
+      </div>
     </div>
   </section>
 
   <!-- RODAPÉ DISCRETO -->
-  <footer class="py-8 bg-black text-slate-500 text-[11px] text-center border-t border-slate-900 px-4">
+  <footer class="py-8 bg-slate-900 text-slate-400 text-[11px] text-center px-4">
     <div class="max-w-3xl mx-auto space-y-2">
       <p>Curso Prático de Informática Básica &copy; Todos os direitos reservados.</p>
-      <p class="text-slate-600">Certificados amparados pela Lei Federal nº 9.394/96 e Decreto Presidencial nº 5.154/04.</p>
+      <p class="text-slate-500">Certificados amparados pela Lei Federal nº 9.394/96 e Decreto Presidencial nº 5.154/04.</p>
       <p class="text-emerald-400 font-medium">WhatsApp Suporte: (11) 91679-2829</p>
     </div>
   </footer>
 
   <!-- BARRA FIXA FLUTUANTE INFERIOR (STICKY CTA) -->
-  <div id="sticky-cta-bar" class="fixed bottom-0 inset-x-0 z-50 p-3 bg-navy-900/95 backdrop-blur-md border-t border-slate-700/80 shadow-2xl transition-all duration-300 transform translate-y-full opacity-0 pointer-events-none">
+  <div id="sticky-cta-bar" class="fixed bottom-0 inset-x-0 z-40 p-3 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-2xl transition-all duration-300 transform translate-y-full opacity-0 pointer-events-none">
     <div class="max-w-md mx-auto flex items-center justify-between gap-3">
       <div class="text-left">
-        <div class="text-[10px] text-slate-400">Acesso Vitalício + Certificado</div>
-        <div class="text-base sm:text-lg font-black text-white leading-none">
-          <span class="text-xs font-bold text-emerald-400">R$</span> 24,90
+        <div class="text-[10px] text-slate-500">Acesso Vitalício + Certificado</div>
+        <div class="text-base sm:text-lg font-black text-slate-900 leading-none">
+          <span class="text-xs font-bold text-emerald-600">R$</span> 24,90
         </div>
       </div>
       <button 
         onclick="irParaCheckout()" 
-        class="flex-1 py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white font-bold text-sm sm:text-base shadow-md shadow-emerald-500/20 transition flex items-center justify-center gap-1.5">
+        class="flex-1 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-extrabold text-sm sm:text-base shadow-md shadow-emerald-600/20 transition flex items-center justify-center gap-1.5">
         <span>Garantir Vaga</span>
         <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </button>
     </div>
   </div>
 
+  <!-- ======================================================== -->
+  <!-- MODAL DE PROMOÇÃO IMPERDÍVEL / DOWNSELL (R$ 19,90)       -->
+  <!-- Dispara EXATAMENTE quando o usuário clica no checkout    -->
+  <!-- e volta para a página!                                   -->
+  <!-- ======================================================== -->
+  <div id="downsell-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+    <div class="relative w-full max-w-sm rounded-3xl bg-white p-6 sm:p-7 text-center shadow-2xl border-2 border-red-500 transform scale-95 transition-all duration-300" id="downsell-box">
+      
+      <!-- Tag Urgência -->
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-100 text-red-700 text-xs font-black uppercase tracking-wider mb-3 animate-pulse">
+        <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+        DESCONTO RELÂMPAGO EXCLUSIVO
+      </div>
+
+      <h3 class="text-xl sm:text-2xl font-black text-slate-900 leading-tight mb-2">
+        Espere! Não fique de fora.
+      </h3>
+
+      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+        Vimos que você não concluiu sua inscrição. Para você começar ainda hoje, liberamos uma condição especial:
+      </p>
+
+      <!-- Box Oferta -->
+      <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 mb-5 text-left">
+        <div class="text-[11px] font-bold text-amber-900 mb-1">PACOTE COMPLETO INCLUSO:</div>
+        <div class="text-xs text-slate-700 space-y-1">
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> 17 Vídeo-Aulas Práticas (Windows 10)</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Certificado Oficial de 40 Horas</div>
+          <div class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Apostila Ilustrada em PDF (45 Pág)</div>
+        </div>
+
+        <div class="mt-3 pt-3 border-t border-amber-200 text-center">
+          <span class="text-xs text-slate-400 line-through">De R$ 24,90 por apenas:</span>
+          <div class="text-3xl font-black text-emerald-700 mt-0.5">
+            <span class="text-lg font-bold">R$</span> 19,90
+          </div>
+          <span class="text-[10px] text-slate-500 font-medium">Taxa única • Acesso Imediato</span>
+        </div>
+      </div>
+
+      <!-- Botão Aceitar Downsell -->
+      <button 
+        onclick="irParaCheckoutDownsell()" 
+        class="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-extrabold text-base shadow-lg shadow-emerald-600/30 transition flex items-center justify-center gap-2 mb-2.5">
+        <span>SIM, QUERO POR APENAS R$ 19,90</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </button>
+
+      <!-- Botão Recusar -->
+      <button 
+        onclick="fecharDownsellModal()" 
+        class="text-xs text-slate-400 hover:text-slate-600 underline transition">
+        Não, obrigado. Prefiro perder o desconto.
+      </button>
+
+    </div>
+  </div>
+
   <script>
-    // Inicializa ícones
+    // Inicializa ícones Lucide
     lucide.createIcons();
 
-    // Lógica da Barra Fixa Inteligente (Some quando qualquer botão da página estiver visível)
+    // ========================================================
+    // LÓGICA DO MODAL DOWNSELL (RECONHECE RETORNO DO CHECKOUT)
+    // ========================================================
+    const downsellModal = document.getElementById('downsell-modal');
+    const downsellBox = document.getElementById('downsell-box');
+
+    function abrirDownsellModal() {
+      // Abre o modal se o usuário tiver aberto o checkout e ainda não tiver visto o modal
+      if (sessionStorage.getItem('abriu_checkout') === 'true' && !sessionStorage.getItem('downsell_exibido')) {
+        sessionStorage.setItem('downsell_exibido', 'true');
+        downsellModal.classList.remove('opacity-0', 'pointer-events-none');
+        downsellModal.classList.add('opacity-100', 'pointer-events-auto');
+        downsellBox.classList.remove('scale-95');
+        downsellBox.classList.add('scale-100');
+      }
+    }
+
+    function fecharDownsellModal() {
+      downsellModal.classList.add('opacity-0', 'pointer-events-none');
+      downsellModal.classList.remove('opacity-100', 'pointer-events-auto');
+      downsellBox.classList.add('scale-95');
+      downsellBox.classList.remove('scale-100');
+    }
+
+    // Dispara quando o usuário volta à página (recarrega, volta no histórico ou foca a aba)
+    window.addEventListener('pageshow', (event) => {
+      if (sessionStorage.getItem('abriu_checkout') === 'true') {
+        setTimeout(abrirDownsellModal, 400);
+      }
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && sessionStorage.getItem('abriu_checkout') === 'true') {
+        setTimeout(abrirDownsellModal, 400);
+      }
+    });
+
+    window.addEventListener('focus', () => {
+      if (sessionStorage.getItem('abriu_checkout') === 'true') {
+        setTimeout(abrirDownsellModal, 400);
+      }
+    });
+
+    // History Back-Trap: quando o usuário clica no botão "Voltar" do navegador
+    history.pushState({ page: 'vendas' }, '', window.location.href);
+    window.addEventListener('popstate', (e) => {
+      if (sessionStorage.getItem('abriu_checkout') === 'true') {
+        abrirDownsellModal();
+        history.pushState({ page: 'vendas' }, '', window.location.href);
+      }
+    });
+
+    // ========================================================
+    // LÓGICA DA BARRA FIXA INTELIGENTE (STICKY CTA)
+    // ========================================================
     const stickyBar = document.getElementById('sticky-cta-bar');
     const onPageButtons = document.querySelectorAll('.on-page-cta');
 
@@ -619,18 +849,15 @@
 
       onPageButtons.forEach(btn => {
         const rect = btn.getBoundingClientRect();
-        // Se qualquer parte do botão estiver visível no viewport da tela:
         if (rect.top < windowHeight && rect.bottom > 0) {
           isAnyBtnVisible = true;
         }
       });
 
       if (isAnyBtnVisible) {
-        // Esconde o botão flutuante se houver botão na tela
         stickyBar.classList.add('translate-y-full', 'opacity-0', 'pointer-events-none');
         stickyBar.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
       } else {
-        // Mostra o botão flutuante quando o usuário rolar e nenhum botão estiver na tela
         stickyBar.classList.remove('translate-y-full', 'opacity-0', 'pointer-events-none');
         stickyBar.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
       }
@@ -638,7 +865,6 @@
 
     window.addEventListener('scroll', checkCtaVisibility, { passive: true });
     window.addEventListener('resize', checkCtaVisibility, { passive: true });
-    // Executa na carga inicial
     setTimeout(checkCtaVisibility, 150);
   </script>
 </body>
