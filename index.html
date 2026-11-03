@@ -9,6 +9,70 @@
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
 
+  <!-- ======================================================== -->
+  <!-- META PIXEL OFICIAL & RASTREAMENTO INTELIGENTE           -->
+  <!-- ======================================================== -->
+  <script>
+    // Cole aqui o ID do seu Pixel do Meta (ex: "123456789012345")
+    window.PIXEL_ID = "1259068652092416";
+
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    
+    if (window.PIXEL_ID && window.PIXEL_ID.trim() !== '') {
+      fbq('init', window.PIXEL_ID);
+      fbq('track', 'PageView');
+    }
+
+    // Dispara ViewContent ao rolar 350px
+    let viewContentDisparado = false;
+    window.addEventListener('scroll', function() {
+      if (!viewContentDisparado && window.scrollY > 350) {
+        viewContentDisparado = true;
+        if (typeof fbq === 'function') {
+          fbq('track', 'ViewContent', {
+            content_name: 'Página de Vendas Curso Informática Básica',
+            content_category: 'Educação Profissionalizante',
+            value: 24.90,
+            currency: 'BRL'
+          });
+        }
+      }
+    }, { passive: true });
+
+    // Preserva UTMs e repassa para todos os links de checkout da Wiapy
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentParams = window.location.search;
+      if (currentParams) {
+        document.querySelectorAll('a[href*="pay.wiapy.com"]').forEach(link => {
+          const originalHref = link.getAttribute('href');
+          const separator = originalHref.includes('?') ? '&' : '?';
+          link.setAttribute('href', originalHref + separator + currentParams.substring(1));
+        });
+      }
+    });
+
+    // Dispara InitiateCheckout no clique de qualquer botão de compra
+    function registrarInitiateCheckout(nomePlano, valor) {
+      if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout', {
+          content_name: nomePlano,
+          value: valor,
+          currency: 'BRL'
+        });
+      }
+    }
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1259068652092416&ev=PageView&noscript=1" />
+  </noscript>
+
   <!-- Google Fonts: Inter & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,6 +143,7 @@
     // Função para ir ao checkout normal e registrar a intenção
     function irParaCheckout() {
       sessionStorage.setItem('abriu_checkout', 'true');
+      registrarInitiateCheckout('Curso Informatica Basica', 24.90);
       const params = window.location.search;
       let url = window.CHECKOUT_NORMAL;
       if (params) {
@@ -91,6 +156,7 @@
     function irParaCheckoutDownsell() {
       sessionStorage.removeItem('abriu_checkout');
       sessionStorage.setItem('viu_downsell', 'true');
+      registrarInitiateCheckout('Curso Informatica Basica - Downsell', 19.90);
       const params = window.location.search;
       let url = window.CHECKOUT_DOWNSELL;
       if (params) {
