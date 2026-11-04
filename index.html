@@ -6,6 +6,11 @@
   <title>Curso Prático de Informática Básica — Do Zero ao Certificado em 7 Dias</title>
   <meta name="description" content="Aprenda informática prática do zero no Windows 10, conquiste autonomia digital e garanta seu Certificado Profissional de 40h reconhecido em todo o Brasil.">
 
+  <!-- Pré-conexões e Preload Prioritário para Carregamento Imediato -->
+  <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+  <link rel="dns-prefetch" href="https://connect.facebook.net">
+  <link rel="preload" as="image" href="/jovem-emprego.webp" fetchpriority="high">
+
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
 
@@ -108,9 +113,6 @@
     }
   </script>
 
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -195,7 +197,7 @@
     <!-- IMAGEM HERO: JOVEM CONQUISTANDO EMPREGO (100% LIMPA) -->
     <div class="relative w-full rounded-2xl overflow-hidden border border-slate-200 shadow-xl mb-6 aspect-video sm:aspect-[16/9] group bg-slate-100">
       <img 
-        src="/jovem-emprego.jpg" 
+        src="/jovem-emprego.webp" 
         alt="Jovem qualificado e contratado no primeiro emprego com certificado de informática" 
         class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
       />
@@ -559,7 +561,9 @@
       <div class="mb-6 group">
         <div class="relative rounded-2xl overflow-hidden border-2 border-amber-400 shadow-xl bg-white p-1 sm:p-2 transition duration-300 group-hover:scale-[1.01]">
           <img 
-            src="/certificado-real.png" 
+            src="/certificado-real.webp" 
+            loading="lazy"
+            decoding="async" 
             alt="Modelo oficial do Certificado de Conclusão do Curso de Informática Básica" 
             class="w-full h-auto rounded-xl object-contain shadow-sm"
           />
@@ -620,7 +624,7 @@
         <!-- BÔNUS 1: APOSTILA COM FOTO -->
         <div class="card-clean p-4 sm:p-5 rounded-2xl flex flex-col sm:flex-row items-center gap-4">
           <div class="w-24 sm:w-28 flex-shrink-0 rounded-lg overflow-hidden border border-slate-300 shadow-md">
-            <img src="/apostila-capa.png" alt="Capa da Apostila de Informática Básica" class="w-full h-auto object-cover" />
+            <img src="/apostila-capa.webp" loading="lazy" decoding="async" alt="Capa da Apostila de Informática Básica" class="w-full h-auto object-cover" />
           </div>
           <div class="text-center sm:text-left flex-1">
             <div class="inline-block text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-700 mb-1.5 uppercase">BÔNUS 1 • LIVRO DIGITAL</div>
@@ -847,9 +851,13 @@
     </div>
   </div>
 
+  <!-- Carregamento Assíncrono dos Ícones Lucide sem travar a renderização inicial -->
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     // Inicializa ícones Lucide
-    lucide.createIcons();
+    if (window.lucide) {
+      lucide.createIcons();
+    }
 
     // ========================================================
     // LÓGICA DO MODAL DOWNSELL (RECONHECE RETORNO DO CHECKOUT)
